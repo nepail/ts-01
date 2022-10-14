@@ -16,16 +16,19 @@ interface CatType {
 
 //implements 實現接口
 class Cat implements CatType {
-    id: string;
-    url: string;
-    height: number;
-    width: number;
-    constructor(id: string, url: string, height: number, width: number) {
-        this.id = id;
-        this.url = url;
-        this.height = height;
-        this.width = width;
-    }
+    // id: string;
+    // url: string;
+    // height: number;
+    // width: number;
+    // constructor(id: string, url: string, height: number, width: number) {
+    //     this.id = id;
+    //     this.url = url;
+    //     this.height = height;
+    //     this.width = width;
+    // }
+
+    //構造函數語法糖
+    constructor(public id: string, public url: string, public height: number, public width: number){}
 }
 
 //定義一個操作DOM的類
@@ -79,5 +82,7 @@ async function getData(): Promise<void> {
 button?.addEventListener<'click'>('click', getData);
 
 tableBody?.addEventListener<'click'>('click', (ev: MouseEvent) => {
-    WebDisplay.deleteData(<HTMLAnchorElement>ev.target);
+    if(ev.target instanceof HTMLAnchorElement){
+        WebDisplay.deleteData(<HTMLAnchorElement>ev.target);
+    }
 })

@@ -15,6 +15,17 @@ const button = document.querySelector('button');
 const tableBody = document.querySelector('#table-body');
 //implements 實現接口
 class Cat {
+    // id: string;
+    // url: string;
+    // height: number;
+    // width: number;
+    // constructor(id: string, url: string, height: number, width: number) {
+    //     this.id = id;
+    //     this.url = url;
+    //     this.height = height;
+    //     this.width = width;
+    // }
+    //構造函數語法糖
     constructor(id, url, height, width) {
         this.id = id;
         this.url = url;
@@ -74,5 +85,7 @@ function getData() {
 }
 button === null || button === void 0 ? void 0 : button.addEventListener('click', getData);
 tableBody === null || tableBody === void 0 ? void 0 : tableBody.addEventListener('click', (ev) => {
-    WebDisplay.deleteData(ev.target);
+    if (ev.target instanceof HTMLAnchorElement) {
+        WebDisplay.deleteData(ev.target);
+    }
 });
