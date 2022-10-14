@@ -10,8 +10,10 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 const url = 'https://api.thecatapi.com/v1/images/search';
 // const button: HTMLButtonElement = document.querySelector('button') as HTMLButtonElement;
+//聯合聲明或as斷言
 const button = document.querySelector('button');
 const tableBody = document.querySelector('#table-body');
+//implements 實現接口
 class Cat {
     constructor(id, url, height, width) {
         this.id = id;
@@ -20,7 +22,9 @@ class Cat {
         this.width = width;
     }
 }
+//定義一個操作DOM的類
 class WebDisplay {
+    //public static 方法可任意存取
     static addData(data) {
         const cat = new Cat(data.id, data.url, data.height, data.width);
         const tableRow = document.createElement('tr');
@@ -40,6 +44,7 @@ class WebDisplay {
         tr.remove();
     }
 }
+//response 的未知數據使用泛型<T>
 function getJSON(url) {
     return __awaiter(this, void 0, void 0, function* () {
         const response = yield fetch(url);
@@ -50,6 +55,7 @@ function getJSON(url) {
 function getData() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            //response 的數據為CatType類型的數組
             const json = yield getJSON(url);
             const data = json[0];
             WebDisplay.addData(data);
